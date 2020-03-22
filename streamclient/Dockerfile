@@ -13,6 +13,4 @@ COPY . /app
 
 ENTRYPOINT [ "python" ]
 
-CMD [ "greeter_client.py" ]
-
-# python -m grpc_tools.protoc -I protos --python_out=. --grpc_python_out=. helloworld.proto
+CMD [ "grpc_client.py" ]

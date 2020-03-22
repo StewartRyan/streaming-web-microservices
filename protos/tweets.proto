@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "ie.ryan.grpc.tweets";
+option java_outer_classname = "TweetsProto";
+option objc_class_prefix = "TP";
+
+package tweets;
+
+service MessageSender {
+  rpc SendMessage(RequestMessage) returns (stream ResponseMessage) {}
+}
+
+message ResponseMessage {
+  string message = 1;
+}
+
+message RequestMessage {
+  string message = 1;
+}
