@@ -2,7 +2,23 @@ version: '3.7'
 services: 
   web-service:
     build: ./web
-    volumes: 
-      - ./web:/usr/src/app
     ports: 
-      - 5000:8080
+      - 80:8080
+    depends_on: 
+      - redis-service
+  redis-service:
+    container_name: redis
+    image: redis
+    ports:
+      - 6379:6379
+    restart: always
+  grpc-server:
+    build: ./backend
+    ports: 
+      - 50051:50051
+    depends_on: 
+      - redis-service
+  grpc-client:
+    build: ./streamclient
+    depends_on: 
+      - grpc-server
